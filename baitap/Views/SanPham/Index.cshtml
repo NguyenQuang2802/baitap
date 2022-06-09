@@ -1,0 +1,57 @@
+﻿@model IEnumerable<baitap.Models.SanPham>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID Sản Phẩm
+            </th>
+            <th>
+                Tên Sản Pham
+            </th>
+            <th>
+                Giá Nhập
+            </th>
+            <th>
+                Giá Bán
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idsp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tensp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gianap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Giaban)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soluong)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-Idsp="@item.Idsp">Edit</a>
+                <a asp-action="Delete" asp-route-Idsp="@item.Idsp">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
