@@ -18,6 +18,9 @@
                 Tên Sản Pham
             </th>
             <th>
+                Nhà Cung Cấp
+            </th>
+            <th>
                 Giá Nhập
             </th>
             <th>
@@ -26,6 +29,9 @@
             <th>
                 Số lượng
             </th>
+            <th>
+               Ngày Nhập
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -33,23 +39,29 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Idsp)
+                @Html.DisplayFor(modelItem => item.IdSP)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Tensp)
+                @Html.DisplayFor(modelItem => item.TenSP)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Gianap)
+                @Html.DisplayFor(modelItem => item.NhaCC)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Giaban)
+                @Html.DisplayFor(modelItem => item.GiaNhap)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Soluong)
+                @Html.DisplayFor(modelItem => item.GiaBan)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-Idsp="@item.Idsp">Edit</a>
-                <a asp-action="Delete" asp-route-Idsp="@item.Idsp">Delete</a>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayNhap)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-Idsp="@item.IdSP">Edit</a>
+                <a asp-action="Delete" asp-route-Idsp="@item.IdSP">Delete</a>
             </td>
         </tr>
 }

@@ -14,30 +14,36 @@ namespace baitap.Controllers
         private readonly ApplicationDBContext _db;
         public SanPhamController(ApplicationDBContext db)
         {
+
             _db = db;
         }
         // GET: SanPhamController
+
         public ActionResult Index(string searchString = "")
         {
             var quer = from sp in _db.SanPhams
                        select sp;
+            
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                quer = quer.Where(x => x.Tensp.Contains(searchString));
+                quer = quer.Where(x => x.TenSP.Contains(searchString));
             }
-            var q = quer.OrderBy(x => x.Idsp);
+            var q = quer.OrderBy(x => x.IdSP);
 
 
             return View("Index", q);
         }
-
+        public ActionResult Create()
+        {
+            return View();
+        }
         // POST: SanPhamController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]/// bao mat ngan tan cong gia mao
         public ActionResult Create(SanPham sanPham)
         {
-             try
+            try
             {
                 _db.SanPhams.Add(sanPham);
                 _db.SaveChanges();
@@ -50,9 +56,9 @@ namespace baitap.Controllers
         }
 
         // GET: SanPhamController/Edit/5
-        public ActionResult Edit(int Idsp)
+        public ActionResult Edit(int idSP)
         {
-            var edit = _db.SanPhams.Find(Idsp);
+            var edit = _db.SanPhams.Find(idSP);
             return View(edit);
         }
 
@@ -63,11 +69,13 @@ namespace baitap.Controllers
         {
             try
             {
-                var Edit = _db.SanPhams.Find(sanPham.Idsp);
-                Edit.Tensp = sanPham.Tensp;
-                Edit.Gianap = sanPham.Gianap;
-                Edit.Giaban = sanPham.Giaban;
-                Edit.Soluong = sanPham.Soluong;
+                var Edit = _db.SanPhams.Find(sanPham.IdSP);
+                Edit.TenSP = sanPham.TenSP;
+                Edit.GiaNhap = sanPham.GiaNhap;
+                Edit.GiaBan = sanPham.GiaBan;
+                Edit.SoLuong = sanPham.SoLuong;
+                Edit.NgayNhap=sanPham.NgayNhap;
+                Edit.NhaCC=sanPham.NhaCC;
 
                 _db.SaveChanges();
                 return RedirectToAction(nameof(Index));
@@ -77,11 +85,11 @@ namespace baitap.Controllers
                 return View();
             }
         }
-       
+
         // GET: SanPhamController/Delete/5
-        public ActionResult Delete(int Idsp)
+        public ActionResult Delete(int idSP)
         {
-            var Delete = _db.SanPhams.Find(Idsp);
+            var Delete = _db.SanPhams.Find(idSP);
             return View(Delete);
         }
 
@@ -92,7 +100,7 @@ namespace baitap.Controllers
         {
             try
             {
-                var Delete = _db.SanPhams.Find(sanPham.Idsp);
+                var Delete = _db.SanPhams.Find(sanPham.IdSP);
                 _db.SanPhams.Remove(Delete);
                 _db.SaveChanges();
                 return RedirectToAction(nameof(Index));
