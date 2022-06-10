@@ -32,18 +32,6 @@ namespace baitap.Controllers
             return View("Index", q);
         }
 
-        // GET: SanPhamController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: SanPhamController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         // POST: SanPhamController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
